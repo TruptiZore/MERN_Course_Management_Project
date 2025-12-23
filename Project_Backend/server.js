@@ -9,7 +9,6 @@ const app = express()
 app.use(express.json())
 
 app.use(authUser)
-//app.use(checkAuthorization)
 
 app.use(commonAPI)
 app.use(admin)
