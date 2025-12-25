@@ -1,6 +1,6 @@
 const express = require('express')
 const authUser = require('./utils/auth')
-//const (authUser, checkAuthorization) = require('./utils/auth')
+
 const commonAPI = require('./routes/commonAPI')
 const admin = require('./routes/admin')
 const student = require('./routes/student')
