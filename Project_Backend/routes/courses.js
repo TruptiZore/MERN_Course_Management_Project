@@ -2,6 +2,7 @@ const express = require("express")
 const pool = require("../db/pool")
 const result = require("../utils/result")
 const router = express.Router()
+const { checkAuthorization } = require("../utils/auth");
 
 // GET ALL COURSES
 router.get("/course/all-courses", (request, response) => {
@@ -14,7 +15,7 @@ router.get("/course/all-courses", (request, response) => {
 })
 
 // ADD COURSE
-router.post("/course/add", (request, response) => {
+router.post("/course/add",checkAuthorization, (request, response) => {
   const { courseName, description, fees, startDate, endDate, videoExpireDays } =
     request.body
 
@@ -26,7 +27,7 @@ router.post("/course/add", (request, response) => {
 })
 
 // UPDATE COURSE
-router.put("/course/update/:courseId", (request, response) => {
+router.put("/course/update/:courseId", checkAuthorization,(request, response) => {
   const { courseId } = request.params
   const { courseName, description, fees, startDate, endDate, videoExpireDays } =
     request.body
@@ -39,7 +40,7 @@ router.put("/course/update/:courseId", (request, response) => {
 })
 
 // DELETE COURSE
-router.delete("/course/delete/:courseId", (request, response) => {
+router.delete("/course/delete/:courseId",checkAuthorization, (request, response) => {
   pool.query(
     `DELETE FROM courses WHERE course_id=?`,
     [request.params.courseId],
