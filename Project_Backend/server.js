@@ -1,7 +1,13 @@
 const express = require('express')
-const authUser = require('./utils/auth')
+const cors = require('cors')
+
 
 const {authUser} = require('./utils/auth')
+const commonAPI = require('./routes/commonAPI')
+const videos = require('./routes/videos')
+
+
+const { authUser } = require('./utils/auth')
 const commonAPI = require('./routes/commonAPI')
 const videos = require('./routes/videos')
 
@@ -10,9 +16,20 @@ const student = require('./routes/student')
 
 const app = express()
 
+
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}))
+
+
 app.use(express.json())
 app.use(authUser)
 app.use(commonAPI)
+
+
+
 
 app.use(videos)
 app.use(courses)
