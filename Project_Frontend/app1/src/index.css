@@ -1,0 +1,214 @@
+/* src/index.css */
+:root {
+  /* --- THEME VARIABLES --- */
+  
+  /* 1. Background: Light Purple */
+  --bg-dark: #E6E6FA;       /* Lavender */
+  
+  /* 2. Cards/Boxes: Light Orange */
+  --bg-card: #FFE4B5;       /* Moccasin / Light Orange */
+  
+  /* 3. Button Colors (Default / Light Mode) */
+  --btn-bg-primary: #002366;    /* Dark Blue */
+  --btn-text-primary: #ffffff;  /* White Text */
+  
+  --btn-red:  #D32F2F;      /* Red */
+  --btn-light-green: #32CD32; /* LimeGreen (For Save Button) */
+  --btn-maroon: #cf5565;    /* Light Maroon (For Not Enrolled Badge) */
+
+  /* Text Colors */
+  --text-main: #070707;     
+  --text-muted: #4a4a4a;    /* Dark Grey for readability on light bg */
+  
+  --navbar-bg: #FFE4B5;     
+  --border-color: #DEB887;  
+}
+
+/* --- DARK THEME (Professional Slate/Purple Edition) --- */
+[data-theme="dark"] {
+  /* 1. Backgrounds: Deep Slate/Purple */
+  --bg-dark: #483D8B;       /* DarkSlateBlue - Deeper for better contrast */
+  --bg-card: #584c9c;       /* Slightly lighter purple for cards to pop */
+  
+  /* 2. Text: High Contrast White & Bright Grey */
+  --text-main: #FFFFFF;     /* Pure White */
+  --text-muted: #E2E8F0;    /* Very Light Grey (So it's visible on purple) */
+  
+  /* 3. Accents: Electric Blue / Cyan */
+  --accent: #38BDF8;        
+  --accent-hover: #7DD3FC;  
+  
+  /* 4. Button Overrides for Dark Mode (Make them POP) */
+  --btn-bg-primary: #38BDF8;   /* Bright Cyan/Sky Blue */
+  --btn-text-primary: #0f172a; /* Dark Text inside bright button */
+  
+  --navbar-bg: #2D2457;     /* Very Dark Purple for Navbar */
+  --border-color: #6c5fa7;  /* Soft purple border */
+}
+
+/* Apply Background to Body */
+body {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-main) !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- CARDS (Login Box, Course Cards) --- */
+.card, .card.bg-light {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4); 
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  background-color: var(--navbar-bg) !important;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+  /* In dark mode, use the bright accent color for the brand */
+  color: var(--btn-bg-primary) !important; 
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  color: var(--text-main) !important;
+  font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--accent, #002366) !important;
+}
+
+/* --- BUTTONS --- */
+
+/* Primary Button (Dynamic based on theme) */
+.btn-primary {
+  background-color: var(--btn-bg-primary) !important;
+  border-color: var(--btn-bg-primary) !important;
+  color: var(--btn-text-primary) !important; /* Dynamic Text Color */
+  font-weight: 700; /* Bolder text for readability */
+  background-image: none !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Success -> Changed to Light Green */
+.btn-success {
+  background-color: var(--btn-light-green) !important;
+  border-color: var(--btn-light-green) !important;
+  color: white !important;
+  font-weight: 600;
+  background-image: none !important;
+}
+
+/* Light Green Button (Manual class if needed) */
+.btn-green {
+  background-color: var(--btn-light-green) !important;
+  border-color: var(--btn-light-green) !important;
+  color: white !important;
+  font-weight: 600;
+  background-image: none !important;
+}
+
+/* Maroon Utility */
+.bg-maroon {
+  background-color: var(--btn-maroon) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover, .btn-success:hover, .btn-green:hover {
+  opacity: 0.9;
+  transform: scale(1.02); /* Slight grow effect */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Outline Buttons */
+.btn-outline-light, .btn-outline-secondary {
+  border-color: var(--btn-bg-primary) !important;
+  color: var(--text-main) !important;
+}
+
+.btn-outline-light:hover, .btn-outline-secondary:hover {
+  background-color: var(--btn-bg-primary) !important;
+  color: var(--btn-text-primary) !important;
+}
+
+/* --- FORMS (CRITICAL FIX FOR VISIBILITY) --- */
+.form-control, .form-select {
+  background-color: #ffffff !important;
+  border: 1px solid #ccc !important;
+  color: #222222 !important; /* Force Dark Text always */
+  font-weight: 500;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.5) !important; /* Cyan glow in dark mode */
+  border-color: var(--btn-bg-primary) !important;
+}
+
+/* Placeholder text color */
+::placeholder {
+  color: #888 !important;
+  opacity: 1;
+}
+
+/* --- TABLES --- */
+.table {
+  color: var(--text-main) !important;
+  border-color: var(--border-color) !important;
+}
+
+.table-dark th {
+  background-color: #212529 !important;
+  color: #fff !important;
+  border-color: #373b3e;
+}
+
+/* Fix striped rows in dark mode so text remains visible */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(0, 0, 0, 0.2) !important; /* Darker stripe */
+  color: var(--text-main) !important;
+}
+
+/* --- TEXT UTILS --- */
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* In Dark Mode, text-primary should match the button (Cyan) */
+.text-primary {
+    color: var(--btn-bg-primary) !important; 
+}
+
+/* Error/Info text */
+.text-info {
+    color: var(--btn-red) !important;
+}
+
+/* --- MODALS --- */
+.modal-content {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color);
+  color: var(--text-main) !important;
+}
+
+.modal-header, .modal-footer {
+    border-color: var(--border-color) !important;
+}
+
+/* Close button filter to make it white in dark mode */
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
